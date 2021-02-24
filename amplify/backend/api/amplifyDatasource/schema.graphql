@@ -1,0 +1,12 @@
+type List @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  Todos: [Todo] @connection(keyName: "byList", fields: ["id"])
+}
+
+type Todo @model @auth(rules: [{allow: public}]) @key(name: "byList", fields: ["listID"]) {
+  id: ID!
+  name: String!
+  description: String
+  listID: ID!
+}
